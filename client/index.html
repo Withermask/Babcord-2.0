@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#171a20">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: blob: file:; connect-src https://babcord.withermask.net wss://babcord.withermask.net http://127.0.0.1:* ws://127.0.0.1:* http://localhost:* ws://localhost:*; img-src 'self' data: blob: https://babcord.withermask.net http://127.0.0.1:* http://localhost:*; style-src 'self' blob:; style-src-elem 'self' blob:; style-src-attr 'unsafe-inline'; script-src 'self' blob:; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'">
+    <title>Babcord</title>
+    <meta name="description" content="Babcord — a focused place for school communities and conversations.">
+    <link rel="stylesheet" href="app.css">
+  </head>
+  <body>
+    <noscript>
+      <div class="fatal-noscript">Babcord needs JavaScript enabled to connect.</div>
+    </noscript>
+
+    <div id="startup" class="startup" role="status" aria-live="polite">
+      <div class="startup-orb" aria-hidden="true"><span>B</span></div>
+      <h1>Babcord</h1>
+      <p id="startup-message">Finding your conversations…</p>
+      <div class="startup-progress" aria-hidden="true"><span></span></div>
+      <button id="startup-retry" class="button secondary hidden" type="button">Retry now</button>
+      <p id="startup-detail" class="startup-detail">Connecting securely</p>
+    </div>
+
+    <div id="update-required" class="takeover hidden" role="alert">
+      <div class="takeover-card">
+        <div class="brand-mark" aria-hidden="true">B</div>
+        <p class="eyebrow">Update required</p>
+        <h1>Your Babcord launcher needs an update</h1>
+        <p id="update-required-copy">This version can no longer connect safely.</p>
+        <a id="update-download" class="button primary" href="https://babcord.withermask.net/client/Open%20Babcord.html" target="_blank" rel="noopener">Download the new launcher</a>
+      </div>
+    </div>
+
+    <main id="auth-view" class="auth-view hidden">
+      <section class="auth-story" aria-label="About Babcord">
+        <div class="auth-brand"><span class="brand-mark">B</span><strong>Babcord</strong></div>
+        <div class="auth-story-copy">
+          <p class="eyebrow">Your school community, together</p>
+          <h1>Talk, share, and keep everyone in the loop.</h1>
+          <p>One clean space for Babcock, your communities, and the people you message most.</p>
+        </div>
+        <div class="auth-pills" aria-hidden="true">
+          <span>Text channels</span><span>Direct messages</span><span>Clear moderation</span>
+        </div>
+      </section>
+
+      <section class="auth-panel">
+        <div class="auth-mobile-brand"><span class="brand-mark">B</span><strong>Babcord</strong></div>
+
+        <form id="login-form" class="auth-card" autocomplete="on">
+          <header><p class="eyebrow">Welcome back</p><h2>Sign in to Babcord</h2><p>Pick up right where you left off.</p></header>
+          <div class="field">
+            <label for="login-username">Username</label>
+            <input id="login-username" name="username" autocomplete="username" minlength="3" maxlength="32" required>
+          </div>
+          <div class="field">
+            <div class="label-row"><label for="login-password">Password</label><button class="text-button" type="button" data-auth-panel="recovery">Use a recovery code</button></div>
+            <div class="password-wrap"><input id="login-password" name="password" type="password" autocomplete="current-password" minlength="8" required><button type="button" class="input-icon" data-toggle-password="login-password" aria-label="Show password">Show</button></div>
+          </div>
+          <p class="form-error hidden" data-form-error role="alert"></p>
+          <button class="button primary wide" type="submit"><span>Sign in</span><span class="button-spinner" aria-hidden="true"></span></button>
+          <p class="auth-switch">New here? <button type="button" class="text-button" data-auth-panel="register">Create an account</button></p>
+        </form>
+
+        <form id="register-form" class="auth-card hidden" autocomplete="off">
+          <header><p class="eyebrow">Join Babcord</p><h2>Create your account</h2><p>No email needed. Save the recovery codes you receive next.</p></header>
+          <div class="field"><label for="register-username">Username</label><input id="register-username" name="username" autocomplete="username" minlength="3" maxlength="32" pattern="[A-Za-z0-9_.-]+" required><small>3–32 characters: letters, numbers, dots, dashes, and underscores.</small></div>
+          <div class="field"><label for="register-display">Display name <span class="optional">optional</span></label><input id="register-display" name="displayName" maxlength="48"></div>
+          <div class="field"><label for="register-password">Password</label><div class="password-wrap"><input id="register-password" name="password" type="password" autocomplete="new-password" minlength="10" required><button type="button" class="input-icon" data-toggle-password="register-password" aria-label="Show password">Show</button></div><div id="password-meter" class="password-meter"><span></span><span></span><span></span><span></span></div></div>
+          <div class="field"><label for="register-confirm">Confirm password</label><input id="register-confirm" name="confirmPassword" type="password" autocomplete="new-password" minlength="10" required></div>
+          <label class="check-row"><input name="acknowledgement" type="checkbox" required><span>I understand administrators can inspect messages for safety and that audit content is retained for 30 days.</span></label>
+          <p class="form-error hidden" data-form-error role="alert"></p>
+          <button class="button primary wide" type="submit"><span>Create account</span><span class="button-spinner" aria-hidden="true"></span></button>
+          <p class="auth-switch">Already registered? <button type="button" class="text-button" data-auth-panel="login">Sign in</button></p>
+        </form>
+
+        <form id="recovery-form" class="auth-card hidden" autocomplete="off">
+          <header><button class="back-button" type="button" data-auth-panel="login" aria-label="Back to sign in">←</button><p class="eyebrow">Account recovery</p><h2>Reset your password</h2><p>Use one unused recovery code. It will stop working after this reset.</p></header>
+          <div class="field"><label for="recovery-username">Username</label><input id="recovery-username" name="username" autocomplete="username" required></div>
+          <div class="field"><label for="recovery-code">Recovery code</label><input id="recovery-code" name="recoveryCode" class="code-input" spellcheck="false" autocomplete="one-time-code" required></div>
+          <div class="field"><label for="recovery-password">New password</label><input id="recovery-password" name="newPassword" type="password" autocomplete="new-password" minlength="10" required></div>
+          <p class="form-error hidden" data-form-error role="alert"></p>
+          <button class="button primary wide" type="submit"><span>Reset password</span><span class="button-spinner" aria-hidden="true"></span></button>
+        </form>
+
+        <section id="recovery-codes-card" class="auth-card recovery-codes hidden" aria-labelledby="recovery-codes-title">
+          <header><div class="success-mark" aria-hidden="true">✓</div><p class="eyebrow">Account created</p><h2 id="recovery-codes-title">Save your recovery codes</h2><p>Each code works once. They cannot be shown again after you continue.</p></header>
+          <div id="recovery-codes" class="code-grid"></div>
+          <div class="button-row"><button id="copy-codes" class="button secondary" type="button">Copy codes</button><button id="download-codes" class="button secondary" type="button">Download</button></div>
+          <label class="check-row"><input id="codes-saved" type="checkbox"><span>I saved these codes somewhere private.</span></label>
+          <button id="continue-after-codes" class="button primary wide" type="button" disabled>Continue to Babcord</button>
+        </section>
+      </section>
+    </main>
+
+    <div id="app" class="app hidden">
+      <div id="connection-banner" class="connection-banner hidden" role="status" aria-live="polite"><span class="status-dot"></span><span id="connection-copy">Reconnecting…</span><button class="text-button" type="button" data-action="retry-connection">Retry</button></div>
+
+      <nav id="server-rail" class="server-rail" aria-label="Servers and direct messages">
+        <button class="server-pill home active" type="button" data-action="open-home" aria-label="Home"><span>B</span></button>
+        <div class="rail-rule"></div>
+        <div id="server-list" class="server-list"></div>
+        <button class="server-pill add" type="button" data-action="create-server" aria-label="Create a server">＋</button>
+        <button class="server-pill discover" type="button" data-action="open-discovery" aria-label="Discover servers">⌁</button>
+      </nav>
+
+      <aside id="nav-sidebar" class="nav-sidebar">
+        <header id="sidebar-header" class="sidebar-header"></header>
+        <div id="sidebar-content" class="sidebar-content"></div>
+        <footer id="user-dock" class="user-dock"></footer>
+      </aside>
+
+      <section class="conversation-shell">
+        <header id="conversation-header" class="conversation-header">
+          <button class="icon-button mobile-only" type="button" data-action="toggle-nav" aria-label="Open navigation">☰</button>
+          <div id="conversation-heading" class="conversation-heading"></div>
+          <div id="header-actions" class="header-actions"></div>
+        </header>
+        <div id="content-stage" class="content-stage">
+          <div id="welcome-state" class="welcome-state"><div class="welcome-icon">B</div><h2>Welcome to Babcord</h2><p>Choose a conversation to get started.</p></div>
+        </div>
+      </section>
+
+      <aside id="member-panel" class="member-panel hidden" aria-label="Members"></aside>
+      <div id="mobile-scrim" class="mobile-scrim hidden" data-action="close-drawers"></div>
+    </div>
+
+    <div id="modal-root" class="modal-root hidden" role="presentation"></div>
+    <div id="context-menu" class="context-menu hidden" role="menu"></div>
+    <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="false"></div>
+
+    <template id="loading-template"><div class="loading-state" aria-label="Loading"><span></span><span></span><span></span></div></template>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

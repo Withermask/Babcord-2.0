@@ -1,0 +1,16 @@
+# Example for a locally-managed named Cloudflare Tunnel.
+# The dashboard-managed/token installation described in README.md is simpler.
+# Never place the real tunnel UUID or credentials JSON in this repository.
+
+tunnel: REPLACE_WITH_TUNNEL_UUID
+credentials-file: C:\ProgramData\Babcord\cloudflared\REPLACE_WITH_TUNNEL_UUID.json
+
+originRequest:
+  connectTimeout: 10s
+  tcpKeepAlive: 30s
+
+ingress:
+  - hostname: babcord.withermask.net
+    service: http://127.0.0.1:8080
+  - service: http_status:404
+
