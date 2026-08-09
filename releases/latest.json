@@ -1,8 +1,0 @@
-{
-  "schemaVersion": 1,
-  "version": "1.0.0",
-  "clientUrl": "https://raw.githubusercontent.com/REPLACE_WITH_GITHUB_OWNER/REPLACE_WITH_GITHUB_REPOSITORY/main/releases/clients/a1218741cdec8972a93e36ec7a31b4c583a7c54627838d3c0023360109144cc5.html",
-  "sha256": "a1218741cdec8972a93e36ec7a31b4c583a7c54627838d3c0023360109144cc5",
-  "sizeBytes": 284269,
-  "format": "babcord-single-html-v1"
-}
