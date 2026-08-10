@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "version": "1.0.0",
-  "clientUrl": "https://raw.githubusercontent.com/Withermask/Babcord-2.0/main/releases/clients/284b8b21b21877cac2ebf13570e48f67bf23ed84c227f465e2b543bb43c817d3.html",
-  "sha256": "284b8b21b21877cac2ebf13570e48f67bf23ed84c227f465e2b543bb43c817d3",
-  "sizeBytes": 284367,
+  "clientUrl": "https://raw.githubusercontent.com/Withermask/Babcord-2.0/main/releases/clients/fa883477dbadc06fc8fc44dd8198b30518c057af422d49aef2032f2e05b699a5.html",
+  "sha256": "fa883477dbadc06fc8fc44dd8198b30518c057af422d49aef2032f2e05b699a5",
+  "sizeBytes": 284382,
   "format": "babcord-single-html-v1"
 }
